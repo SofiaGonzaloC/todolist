@@ -12,6 +12,7 @@ const main = async () => {
     const tareas = new Tareas();
 
     do {
+        // Imprime menu para seleccionar
         opt = await inquirerMenu();
 
         switch (opt) {
@@ -21,7 +22,7 @@ const main = async () => {
                 tareas.crearTarea(desc);
                 break;
             case '2':
-                console.log( tareas._listado)
+                console.log( tareas.listadoArr)
             break;
         }
 
