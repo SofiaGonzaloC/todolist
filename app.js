@@ -2,6 +2,9 @@ require('colors');
 
 const { inquirerMenu, pausa } = require('./helpers/inquirer.js')
 
+const Tarea = require('./models/tarea')
+const Tareas = require('./models/tareas')
+
 const main = async () => {
 
     let opt = '';
@@ -18,6 +21,14 @@ const main = async () => {
         opt = await inquirerMenu();
 
         console.log(opt)
+
+        // const tareas = new Tareas();
+
+        // const tarea = new Tarea('Comprar cosas');
+
+        // tareas._listado[tarea.id] = tarea
+
+        // console.log(tarea, tareas)
 
         await pausa();
 
