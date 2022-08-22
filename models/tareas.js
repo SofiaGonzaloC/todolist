@@ -41,6 +41,23 @@ class Tareas {
         // Manda el id generado en tarea
         this._listado[tarea.id] = tarea
     }
+
+    listadoCompleto(){
+
+        // TODO: Listar tareas con solo la descripción y decir si esta completada (verde) o pend. (rojo)
+
+        console.log()
+
+        this.listadoArr.forEach((tarea, i) => {
+            const idx = `${i + 1}`.green
+            const { desc, completadoEn } = tarea;
+            const estado = (completadoEn)
+                ? 'Completada'.green
+                : 'Pendiente'.red
+            
+            console.log(`${idx} ${desc} :: ${estado}`)
+        })
+    }
 }
 
 module.exports = Tareas;
