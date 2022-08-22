@@ -44,18 +44,44 @@ class Tareas {
 
     listadoCompleto(){
 
-        // TODO: Listar tareas con solo la descripción y decir si esta completada (verde) o pend. (rojo)
-
         console.log()
 
         this.listadoArr.forEach((tarea, i) => {
-            const idx = `${i + 1}`.green
+            const idx = `${i + 1}.`.magenta
             const { desc, completadoEn } = tarea;
             const estado = (completadoEn)
                 ? 'Completada'.green
                 : 'Pendiente'.red
             
             console.log(`${idx} ${desc} :: ${estado}`)
+        })
+    }
+
+    listarPendientesCompletadas( completadas = true ){
+
+        let contador = 0;
+
+        console.log()
+
+        this.listadoArr.forEach((tarea) => {
+            const { desc, completadoEn } = tarea;
+            const estado = (completadoEn)
+                ? 'Completada'.green
+                : 'Pendiente'.red
+
+            if(completadas) {
+            // Muestra tareas completadas
+                if(completadoEn){
+                    contador += 1;
+                    console.log(`${ (contador + '.').magenta}. ${desc} :: ${estado}`)
+                }
+            } else {
+            // Muestra tareas pendientes
+                if(!completadoEn){
+                    contador += 1;
+                    console.log(`${(contador + '.').magenta} ${desc} :: ${estado}`)
+                }
+            }
         })
     }
 }
