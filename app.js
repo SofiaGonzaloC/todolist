@@ -51,7 +51,7 @@ const main = async () => {
             case '5':
                 const ids = await mostrarListadoChecklist(tareas.listadoArr)
 
-                console.log(ids)
+                tareas.toggleCompletadas(ids)
             break;
 
             case '6':
