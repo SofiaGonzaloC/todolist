@@ -129,10 +129,38 @@ const confirmar = async (message) => {
     return ok;
 }
 
+const mostrarListadoChecklist = async (tareas = []) => {
+    const choices = tareas.map((tarea, i) => {
+        const idx = `${i + 1}`.magenta
+
+        return {
+            value: tarea.id,
+            name: `${idx} ${tarea.desc}`,
+            // Checked solo si ya ha sido completada antes
+            checked: ( tarea.completadoEn ) ? true : false
+        }
+    })
+
+    const pregunta = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Selecciones',
+            choices
+        }
+    ]
+
+    const { ids } = await inquirer.prompt(pregunta)
+
+    return ids;
+
+}
+
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
     listadoTareasBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoChecklist
 }
