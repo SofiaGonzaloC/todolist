@@ -47,7 +47,7 @@ const inquirerMenu = async () => {
     console.log('   Seleccione una opción   '.blue)
     console.log('===========================\n'.cyan)
 
-    const {opcion} = await inquirer.prompt(preguntas)
+    const { opcion } = await inquirer.prompt(preguntas)
 
     return opcion
 }
@@ -66,27 +66,27 @@ const pausa = async () => {
     await inquirer.prompt(question)
 }
 
-const leerInput = async(message) => {
+const leerInput = async (message) => {
     const question = [
         {
             type: 'input',
             name: 'desc',
             message,
-            Validate(value){
-                if(this.validate.length === 0) return 'Por favor ingrese un valor'
+            Validate(value) {
+                if (this.validate.length === 0) return 'Por favor ingrese un valor'
 
                 return true;
             }
         }
     ]
 
-    const {desc} = await inquirer.prompt(question);
+    const { desc } = await inquirer.prompt(question);
 
     return desc
 }
 
-const listadoTareasBorrar = async(tareas = []) => {
-    const choices = tareas.map( (tarea, i) => {
+const listadoTareasBorrar = async (tareas = []) => {
+    const choices = tareas.map((tarea, i) => {
         const idx = `${i + 1}`.magenta
 
         return {
@@ -95,8 +95,13 @@ const listadoTareasBorrar = async(tareas = []) => {
         }
     })
 
+    choices.unshift({
+        value: '0',
+        name: '0'.green + ' Cancelar'
+    })
+
     const preguntas = [
-        { 
+        {
             type: 'list',
             name: 'id',
             message: 'Borrar',
@@ -110,9 +115,24 @@ const listadoTareasBorrar = async(tareas = []) => {
 
 }
 
+const confirmar = async (message) => {
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ]
+
+    const { ok } = await inquirer.prompt(question);
+
+    return ok;
+}
+
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
-    listadoTareasBorrar
+    listadoTareasBorrar,
+    confirmar
 }
